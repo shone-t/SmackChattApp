@@ -15,6 +15,8 @@
 		526FD16722C3BA17003720DF /* ChatVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 526FD16622C3BA17003720DF /* ChatVC.swift */; };
 		526FD17222C3BFAB003720DF /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 526FD17022C3BFAB003720DF /* SWRevealViewController.m */; };
 		527A9F6B22C502E2006EE32E /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527A9F6A22C502E2006EE32E /* GradientView.swift */; };
+		52FE1C0B22C655AA004AC680 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52FE1C0A22C655AA004AC680 /* Constants.swift */; };
+		52FE1C0D22C65C59004AC680 /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52FE1C0C22C65C59004AC680 /* LoginVC.swift */; };
 		BDCD355536E7A0AAC55AD15D /* Pods_Smack.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 712EC98EC07E340462CA59BF /* Pods_Smack.framework */; };
 /* End PBXBuildFile section */
 
@@ -31,6 +33,8 @@
 		526FD17022C3BFAB003720DF /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRevealViewController.m; sourceTree = "<group>"; };
 		526FD17122C3BFAB003720DF /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRevealViewController.h; sourceTree = "<group>"; };
 		527A9F6A22C502E2006EE32E /* GradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
+		52FE1C0A22C655AA004AC680 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		52FE1C0C22C65C59004AC680 /* LoginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
 		712EC98EC07E340462CA59BF /* Pods_Smack.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Smack.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AD242F0CEA73825891C15CF1 /* Pods-Smack.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Smack.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Smack/Pods-Smack.debug.xcconfig"; sourceTree = "<group>"; };
 		E9F5E16968E19029AF8FA5E6 /* Pods-Smack.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Smack.release.xcconfig"; path = "Pods/Target Support Files/Pods-Smack/Pods-Smack.release.xcconfig"; sourceTree = "<group>"; };
@@ -69,6 +73,7 @@
 		5230598322C39E1B0057DDD3 /* Smack */ = {
 			isa = PBXGroup;
 			children = (
+				52FE1C0922C65589004AC680 /* Utilities */,
 				526FD16822C3BBF2003720DF /* Supporting Files */,
 				526FD16122C3B5D2003720DF /* Model */,
 				526FD16022C3B5B0003720DF /* View */,
@@ -87,6 +92,7 @@
 			children = (
 				526FD16422C3B63A003720DF /* ChannelVC.swift */,
 				526FD16622C3BA17003720DF /* ChatVC.swift */,
+				52FE1C0C22C65C59004AC680 /* LoginVC.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -114,6 +120,14 @@
 				526FD16F22C3BFAA003720DF /* Smack-Bridging-Header.h */,
 			);
 			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		52FE1C0922C65589004AC680 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				52FE1C0A22C655AA004AC680 /* Constants.swift */,
+			);
+			path = Utilities;
 			sourceTree = "<group>";
 		};
 		6E9C35E5533B9B79ABE6175D /* Pods */ = {
@@ -254,9 +268,11 @@
 			files = (
 				526FD16722C3BA17003720DF /* ChatVC.swift in Sources */,
 				526FD16522C3B63A003720DF /* ChannelVC.swift in Sources */,
+				52FE1C0D22C65C59004AC680 /* LoginVC.swift in Sources */,
 				527A9F6B22C502E2006EE32E /* GradientView.swift in Sources */,
 				5230598522C39E1B0057DDD3 /* AppDelegate.swift in Sources */,
 				526FD17222C3BFAB003720DF /* SWRevealViewController.m in Sources */,
+				52FE1C0B22C655AA004AC680 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
