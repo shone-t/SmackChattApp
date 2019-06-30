@@ -12,3 +12,5 @@ import Foundation
 
 //Dali smo segue izmedju login dugmeta i login forme ovaj id = "toLogin" sto nas je povezalo u Chanell.vs
 let TO_LOGIN = "toLogin"
+let TO_CREATE_ACCOUNT = "toCreateAccoutn"
+let UNWIND = "unwindToChannel"
