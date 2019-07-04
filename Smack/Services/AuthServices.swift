@@ -8,6 +8,7 @@
 
 import Foundation
 import Alamofire
+import SwiftyJSON
 
 //ovo ce biti singlton, globalno dostupan i datom trenutku moze biti samo jedan primerak
 class AuthServices {
@@ -49,16 +50,13 @@ class AuthServices {
     func registerUser(email: String, password: String, complition: @escaping CompletionHandler)  {
         let lowerCaseEmail = email.lowercased()
         
-        let header = [
-            "Content-Type": "application/json; charset=utf-8"
-        ]
         
         let body: [String: Any] = [
             "email": lowerCaseEmail,
             "password": password
         ]
         
-        Alamofire.request(URL_REGISTER, method: .post, parameters: body, encoding: JSONEncoding.default, headers: header).responseString { (response) in
+        Alamofire.request(URL_REGISTER, method: .post, parameters: body, encoding: JSONEncoding.default, headers: HEADER).responseString { (response) in
             if response.result.error == nil {
                 complition(true)
             } else {
@@ -70,5 +68,41 @@ class AuthServices {
         
     }
     
-    
+    func loginUser(email: String, password: String, complition: @escaping CompletionHandler) {
+        let lowerCaseEmail = email.lowercased()
+        
+        let body: [String: Any] = [
+            "email": lowerCaseEmail,
+            "password": password
+        ]
+        
+        Alamofire.request(URL_LOGIN, method: .post, parameters: body, encoding: JSONEncoding.default, headers: HEADER).responseJSON { (response) in
+            if response.result.error == nil {
+                
+//                  using JSON
+//                if let json = response.result.value as? Dictionary<String, Any> {
+//                    if let email = json["user"] as? String {
+//                        self.userEmail = email
+//                    }
+//                    if let token = json["token"] as? String {
+//                        self.authToken = token
+//                    }
+//                }
+                
+                
+//              using SWIFT JSON
+                guard let podaci = response.data else { return }
+                let json = try! JSON(data: podaci)  //ovde mi trazio opciono ili implicitno da stavimo za json 'try!' ili da okruzim u DO Catch blok
+                self.userEmail = json["user"].stringValue
+                self.authToken = json["token"].stringValue
+
+                self.isLoggedIn = true
+                
+                complition(true)
+            } else {
+                complition(false)
+                debugPrint(response.result.error as Any)
+            }
+        }
+    }
 }

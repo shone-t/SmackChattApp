@@ -29,7 +29,12 @@ class CreateAccountVC: UIViewController {
         
         AuthServices.instance.registerUser(email: email, password: pass) { (success) in
             if success {
-                print ("registered user!")
+                //print ("registered user!") //ovo je bilo dok nismo prosirili pricu sa loginom, zato ispod automatski logujemo novokreiranog usera
+                AuthServices.instance.loginUser(email: email, password: pass, complition: { (success) in
+                    if success {
+                        print("logged in user!", AuthServices.instance.userEmail, AuthServices.instance.authToken)
+                    }
+                })
             }
         }
     }
