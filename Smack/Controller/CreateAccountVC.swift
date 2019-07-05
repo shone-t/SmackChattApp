@@ -25,7 +25,14 @@ class CreateAccountVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-
+        
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        if UserDataService.instacne.avatarName != "" {
+            userImg.image = UIImage(named: UserDataService.instacne.avatarName)
+            avatarName = UserDataService.instacne.avatarName
+        }
     }
     
     @IBAction func createAccountPressed(_ sender: Any) {
