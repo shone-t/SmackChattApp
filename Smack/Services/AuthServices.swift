@@ -115,25 +115,13 @@ class AuthServices {
             "avatarColor": avatarColor
         ]
         
-        let  header = [
-            "Authorization":"Bearer \(AuthServices.instance.authToken)",
-            "Content-Type": "application/json; charset=utf-8"
-        ]
-        
-        Alamofire.request(URL_USER_ADD, method: .post, parameters: body, encoding: JSONEncoding.default, headers: header).responseJSON { (response) in
+        Alamofire.request(URL_USER_ADD, method: .post, parameters: body, encoding: JSONEncoding.default, headers: BEARER_HEADER).responseJSON { (response) in
             
             if response.result.error == nil {
                 
                 guard let podaziIzJsona = response.data else {return}
                 
-                let json = try! JSON(data: podaziIzJsona)
-                let id = json["_id"].stringValue
-                let color = json["avatarColor"].stringValue
-                let avatarName = json["avatarName"].stringValue
-                let email = json["email"].stringValue
-                let name = json["name"].stringValue
-                
-                UserDataService.instacne.setUserDataService(id: id, avatarColor: color, avatarName: avatarName, email: email, name: name)
+                self.setUserInfo(data: podaziIzJsona)
                 
                 complition(true)
                 
@@ -141,9 +129,37 @@ class AuthServices {
                 complition(false)
                 debugPrint(response.result.error as Any)
             }
-            
         }
     }
     
+    func findUserByEmail(complition: @escaping CompletionHandler) {
+        
+        Alamofire.request("\(URL_USER_BY_EMAIL)\(userEmail)", method: .get, parameters: nil, encoding: JSONEncoding.default, headers: BEARER_HEADER).responseJSON { (response) in
+            
+            if response.result.error == nil {
+                
+                guard let podaziIzJsona = response.data else {return}
+                
+                self.setUserInfo(data: podaziIzJsona)
+                
+                complition(true)
+                
+            } else {
+                complition(false)
+                debugPrint(response.result.error as Any)
+            }
+        }
+    }
+    
+    func setUserInfo(data: Data) {
+        let json = try! JSON(data: data)
+        let id = json["_id"].stringValue
+        let color = json["avatarColor"].stringValue
+        let avatarName = json["avatarName"].stringValue
+        let email = json["email"].stringValue
+        let name = json["name"].stringValue
+        
+        UserDataService.instacne.setUserDataService(id: id, avatarColor: color, avatarName: avatarName, email: email, name: name)
+    }
     
 }

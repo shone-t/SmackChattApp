@@ -22,6 +22,12 @@ class ChannelVC: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(ChannelVC.userDataDidChange(_:)), name: NOTIF_USER_DATA_DID_CHANGE, object: nil)
     }
     
+    
+    //ovo smo uradili da bi na gasenje aplikacijie i ponovno pokretanje ostali ulogvani 2
+    override func viewDidAppear(_ animated: Bool) {
+        setupUserInfo()
+    }
+    
     @IBAction func loginBtnPressed(_ sender: Any) {
         if AuthServices.instance.isLoggedIn {
             // show profile page
@@ -39,6 +45,10 @@ class ChannelVC: UIViewController {
     }
     
     @objc func userDataDidChange(_ notif: Notification) {
+            setupUserInfo()
+    }
+    
+    func setupUserInfo() {
         if AuthServices.instance.isLoggedIn {
             loginBtn.setTitle(UserDataService.instacne.name, for: .normal)
             userImg.image = UIImage(named: UserDataService.instacne.avatarName)

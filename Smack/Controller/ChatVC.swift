@@ -23,6 +23,13 @@ class ChatVC: UIViewController {
         
         self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
         self.view.addGestureRecognizer(self.revealViewController().tapGestureRecognizer())
+        
+        //ovo smo uradili da bi na gasenje aplikacijie i ponovno pokretanje ostali ulogvani 1
+        if AuthServices.instance.isLoggedIn {
+            AuthServices.instance.findUserByEmail(complition: {(success) in
+                NotificationCenter.default.post(name: NOTIF_USER_DATA_DID_CHANGE, object: nil )
+            })
+        }
     }
     
     
