@@ -23,8 +23,19 @@ class ChannelVC: UIViewController {
     }
     
     @IBAction func loginBtnPressed(_ sender: Any) {
-        //pozivamo Utilities > Constants > let to_login
-        performSegue(withIdentifier: TO_LOGIN, sender: nil)
+        if AuthServices.instance.isLoggedIn {
+            // show profile page
+            let profile = ProfileVC()
+            profile.modalPresentationStyle = .custom
+            
+            present(profile, animated: true, completion: nil)
+            
+        } else {
+            performSegue(withIdentifier: TO_LOGIN, sender: nil)
+        }
+        
+        ////pozivamo Utilities > Constants > let to_login
+        //performSegue(withIdentifier: TO_LOGIN, sender: nil)
     }
     
     @objc func userDataDidChange(_ notif: Notification) {
@@ -34,7 +45,7 @@ class ChannelVC: UIViewController {
             userImg.backgroundColor = UserDataService.instacne.returnUIColor(components: UserDataService.instacne.avatarColor)
         } else {
             loginBtn.setTitle("Login", for: .normal)
-            userImg.image = UIImage(named: "menuProfileImage")
+            userImg.image = UIImage(named: "profileDefault")
             userImg.backgroundColor = UIColor.clear
         }
     }
