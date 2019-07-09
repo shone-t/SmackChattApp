@@ -16,6 +16,8 @@ class MessageService {
     
     var channels = [Channel]()
     
+    var selectedChannel : Channel?
+    
     func findAllChannel(completion: @escaping CompletionHandler) {
 
 //        ovo sam morao da dodam bilo koji da bi radilo
@@ -58,6 +60,7 @@ class MessageService {
 //                    print(self.channels)
 //                    print(self.channels[0].channelTitle)
 //                    print("prosao ovo 333")
+                    NotificationCenter.default.post(name: NOTIF_CHANNELS_LOADED, object: nil)
                     completion(true)
                 }
             } else {
@@ -66,5 +69,7 @@ class MessageService {
             }
         }
     }
-    
+    func clearChannels(){
+        channels.removeAll()
+    }
 }
