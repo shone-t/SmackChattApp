@@ -55,15 +55,14 @@ class MessageService {
                         //let channel = Channel(_id: id, name: name, description: channelDescription, __v: 1)
                         self.channels.append(channel)
                     }
-                    print(self.channels)
-                    print(self.channels[0].channelTitle)
-                    print("prosao ovo 333")
+//                    print(self.channels)
+//                    print(self.channels[0].channelTitle)
+//                    print("prosao ovo 333")
                     completion(true)
                 }
             } else {
                 completion(false)
                 debugPrint(response.result.error as Any)
-                print("sranje ovo")
             }
         }
     }
