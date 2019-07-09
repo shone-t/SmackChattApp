@@ -16,6 +16,7 @@ class MessageService {
     
     var channels = [Channel]()
     var messages = [Message]()
+    var unreadChannels = [String]()
     var selectedChannel : Channel?
     
     func findAllChannel(completion: @escaping CompletionHandler) {
@@ -95,6 +96,7 @@ class MessageService {
                     completition(true)
                 }
             } else {
+                print(response.result.error as Any)
                 debugPrint(response.result.error as Any)
                 completition(false)
             }
